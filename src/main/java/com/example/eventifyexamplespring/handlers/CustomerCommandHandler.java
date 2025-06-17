@@ -1,0 +1,116 @@
+package com.example.eventifyexamplespring.handlers;
+
+import com.example.eventifyexamplespring.domain.Customer;
+import com.example.eventifyexamplespring.domain.CustomerCommand.AddCredits;
+import com.example.eventifyexamplespring.domain.CustomerCommand.ChangeFirstName;
+import com.example.eventifyexamplespring.domain.CustomerCommand.ChangeLastName;
+import com.example.eventifyexamplespring.domain.CustomerCommand.CreateCustomer;
+import com.example.eventifyexamplespring.domain.CustomerCommand.DeleteCustomer;
+import com.example.eventifyexamplespring.domain.CustomerCommand.IssueCredits;
+import com.example.eventifyexamplespring.domain.CustomerEvent;
+import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerCreated;
+import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerDeleted;
+import com.example.eventifyexamplespring.domain.CustomerEvent.FirstNameChanged;
+import com.example.eventifyexamplespring.domain.CustomerEvent.LastNameChanged;
+import io.github.alikelleci.eventify.core.common.annotations.MessageId;
+import io.github.alikelleci.eventify.core.common.annotations.MetadataValue;
+import io.github.alikelleci.eventify.core.common.annotations.Timestamp;
+import io.github.alikelleci.eventify.core.messaging.Metadata;
+import io.github.alikelleci.eventify.core.messaging.commandhandling.annotations.HandleCommand;
+import jakarta.validation.ValidationException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.time.Instant;
+
+import static com.example.eventifyexamplespring.domain.CustomerEvent.CreditsAdded;
+import static com.example.eventifyexamplespring.domain.CustomerEvent.CreditsIssued;
+import static io.github.alikelleci.eventify.core.messaging.Metadata.CORRELATION_ID;
+
+@Slf4j
+@Component
+public class CustomerCommandHandler {
+
+  @HandleCommand
+  public CustomerEvent handle(CreateCustomer command,
+                              Customer state,
+                              Metadata metadata,
+                              @Timestamp Instant timestamp,
+                              @MessageId String messageId,
+                              @MetadataValue(CORRELATION_ID) String correlationId) {
+    if (state != null) {
+      throw new ValidationException("Customer already exists.");
+    }
+
+    return CustomerCreated.builder()
+        .id(command.getId())
+        .firstName(command.getFirstName())
+        .lastName(command.getLastName())
+        .credits(command.getCredits())
+        .birthday(command.getBirthday())
+        .build();
+  }
+
+  @HandleCommand
+  public CustomerEvent handle(ChangeFirstName command, Customer state) {
+    if (state == null) {
+      throw new ValidationException("Customer does not exists.");
+    }
+
+    return FirstNameChanged.builder()
+        .id(command.getId())
+        .firstName(command.getFirstName())
+        .build();
+  }
+
+  @HandleCommand
+  public CustomerEvent handle(ChangeLastName command, Customer state) {
+    if (state == null) {
+      throw new ValidationException("Customer does not exists.");
+    }
+
+    return LastNameChanged.builder()
+        .id(command.getId())
+        .lastName(command.getLastName())
+        .build();
+  }
+
+  @HandleCommand
+  public CustomerEvent handle(AddCredits command, Customer state) {
+    if (state == null) {
+      throw new ValidationException("Customer does not exists.");
+    }
+
+    return CreditsAdded.builder()
+        .id(command.getId())
+        .amount(command.getAmount())
+        .build();
+  }
+
+  @HandleCommand
+  public CustomerEvent handle(IssueCredits command, Customer state) {
+    if (state == null) {
+      throw new ValidationException("Customer does not exists.");
+    }
+
+    if (state.getCredits() < command.getAmount()) {
+      throw new ValidationException("Credits not issued: not enough credits available.");
+    }
+
+    return CreditsIssued.builder()
+        .id(command.getId())
+        .amount(command.getAmount())
+        .build();
+  }
+
+  @HandleCommand
+  public CustomerEvent handle(DeleteCustomer command, Customer state) {
+    if (state == null) {
+      throw new ValidationException("Customer does not exists.");
+    }
+
+    return CustomerDeleted.builder()
+        .id(command.getId())
+        .build();
+  }
+}
