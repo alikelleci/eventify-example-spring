@@ -1,8 +1,10 @@
 package com.example.eventifyexamplespring;
 
 import com.example.eventifyexamplespring.domain.CustomerCommand;
+import com.example.eventifyexamplespring.domain.CustomerCommand.AddCredits;
 import com.example.eventifyexamplespring.domain.CustomerCommand.CreateCustomer;
 import com.example.eventifyexamplespring.domain.CustomerEvent;
+import com.example.eventifyexamplespring.domain.CustomerEvent.CreditsAdded;
 import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerCreated;
 import com.example.eventifyexamplespring.handlers.CustomerCommandHandler;
 import com.example.eventifyexamplespring.handlers.CustomerEventSourcingHandler;
@@ -62,7 +64,7 @@ class EventifyExampleSpringApplicationTests {
 
 
 	@Test
-	void CustomerCreatedTest() {
+	void AddCreditsTest() {
 		Command command = Command.builder()
 				.payload(CreateCustomer.builder()
 						.id("cust-1")
@@ -74,13 +76,23 @@ class EventifyExampleSpringApplicationTests {
 		// publish command to topic with aggregateId as key!
 		commands.pipeInput(command.getAggregateId(), command);
 
+		command = Command.builder()
+				.payload(AddCredits.builder()
+						.id("cust-1")
+						.build())
+				.build();
+
+		// publish command to topic with aggregateId as key!
+		commands.pipeInput(command.getAggregateId(), command);
+
+
 		// read events
 		List<Event> result = events.readValuesToList();
 
 		// assert
-		assertThat(result.size(), equalTo(1));
-		Event event = result.get(0);
-		assertThat(event.getPayload(), instanceOf(CustomerCreated.class));
+		assertThat(result.size(), equalTo(2));
+		assertThat(result.get(0).getPayload(), instanceOf(CustomerCreated.class));
+		assertThat(result.get(1).getPayload(), instanceOf(CreditsAdded.class));
 	}
 
 }
