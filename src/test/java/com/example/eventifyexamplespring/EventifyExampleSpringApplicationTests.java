@@ -20,7 +20,6 @@ import org.apache.kafka.streams.TopologyTestDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
@@ -71,8 +70,6 @@ class EventifyExampleSpringApplicationTests {
 						.lastName("Doe")
 						.build())
 				.build();
-
-		System.out.println(command);
 
 		// publish command to topic with aggregateId as key!
 		commands.pipeInput(command.getAggregateId(), command);
