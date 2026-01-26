@@ -23,28 +23,36 @@ public class TopicConfig {
     return new KafkaAdmin(configs);
   }
 
+
   @Bean
-  public NewTopic commandsTopic() {
-    return TopicBuilder
-        .name(CustomerCommand.class.getAnnotation(TopicInfo.class).value())
-        .partitions(1)
+  public KafkaAdmin.NewTopics topics() {
+    return new KafkaAdmin.NewTopics(
+        // BookingSubscription
+        commandTopic(CustomerCommand.class),
+        commandResultsTopic(CustomerCommand.class),
+        eventTopic(CustomerEvent.class)
+
+        // Other aggregate topics...
+    );
+  }
+
+  private NewTopic commandTopic(Class<?> commandClass) {
+    return TopicBuilder.name(commandClass.getAnnotation(TopicInfo.class).value())
+        .partitions(10)
         .build();
   }
 
-  @Bean
-  public NewTopic resultsTopic() {
+  private NewTopic commandResultsTopic(Class<?> commandClass) {
     return TopicBuilder
-        .name(CustomerCommand.class.getAnnotation(TopicInfo.class).value().concat(".results"))
-        .partitions(1)
+        .name(commandClass.getAnnotation(TopicInfo.class)
+            .value() + ".results").partitions(10)
         .build();
   }
 
-  @Bean
-  public NewTopic eventsTopic() {
+  private NewTopic eventTopic(Class<?> eventClass) {
     return TopicBuilder
-        .name(CustomerEvent.class.getAnnotation(TopicInfo.class).value())
-        .partitions(1)
-        .config("retention.ms", "-1")
+        .name(eventClass.getAnnotation(TopicInfo.class).value())
+        .partitions(10).config("retention.ms", "-1")
         .build();
   }
 
