@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaAdmin;
+import org.springframework.kafka.core.KafkaAdmin.NewTopics;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,8 +26,8 @@ public class TopicConfig {
 
 
   @Bean
-  public KafkaAdmin.NewTopics topics() {
-    return new KafkaAdmin.NewTopics(
+  public NewTopics topics() {
+    return new NewTopics(
         // BookingSubscription
         commandTopic(CustomerCommand.class),
         commandResultsTopic(CustomerCommand.class),
