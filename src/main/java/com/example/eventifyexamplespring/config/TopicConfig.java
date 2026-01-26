@@ -28,7 +28,7 @@ public class TopicConfig {
   @Bean
   public NewTopics topics() {
     return new NewTopics(
-        // BookingSubscription
+        // Customer
         commandTopic(CustomerCommand.class),
         commandResultsTopic(CustomerCommand.class),
         eventTopic(CustomerEvent.class)
