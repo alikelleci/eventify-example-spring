@@ -1,11 +1,11 @@
-package com.example.eventifyexamplespring.handlers;
+package com.example.eventifyexamplespring.customer.core;
 
-import com.example.eventifyexamplespring.domain.CustomerCommand.AddCredits;
-import com.example.eventifyexamplespring.domain.CustomerCommand.ChangeFirstName;
-import com.example.eventifyexamplespring.domain.CustomerCommand.ChangeLastName;
-import com.example.eventifyexamplespring.domain.CustomerCommand.CreateCustomer;
-import com.example.eventifyexamplespring.domain.CustomerCommand.DeleteCustomer;
-import com.example.eventifyexamplespring.domain.CustomerCommand.IssueCredits;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.AddCredits;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.ChangeFirstName;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.ChangeLastName;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.CreateCustomer;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.DeleteCustomer;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.IssueCredits;
 import io.github.alikelleci.eventify.core.messaging.resulthandling.annotations.HandleResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

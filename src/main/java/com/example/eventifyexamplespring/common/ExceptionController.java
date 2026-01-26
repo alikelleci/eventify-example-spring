@@ -1,4 +1,4 @@
-package com.example.eventifyexamplespring.controller;
+package com.example.eventifyexamplespring.common;
 
 import io.github.alikelleci.eventify.core.messaging.commandhandling.exceptions.CommandExecutionException;
 import jakarta.servlet.http.HttpServletRequest;

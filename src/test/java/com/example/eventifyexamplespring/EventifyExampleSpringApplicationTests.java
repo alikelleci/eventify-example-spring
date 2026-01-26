@@ -1,13 +1,13 @@
 package com.example.eventifyexamplespring;
 
-import com.example.eventifyexamplespring.domain.CustomerCommand;
-import com.example.eventifyexamplespring.domain.CustomerCommand.AddCredits;
-import com.example.eventifyexamplespring.domain.CustomerCommand.CreateCustomer;
-import com.example.eventifyexamplespring.domain.CustomerEvent;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CreditsAdded;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.eventifyexamplespring.handlers.CustomerCommandHandler;
-import com.example.eventifyexamplespring.handlers.CustomerEventSourcingHandler;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.AddCredits;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.CreateCustomer;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.eventifyexamplespring.customer.core.CustomerCommandHandler;
+import com.example.eventifyexamplespring.customer.core.CustomerEventSourcingHandler;
 import io.github.alikelleci.eventify.core.Eventify;
 import io.github.alikelleci.eventify.core.common.annotations.TopicInfo;
 import io.github.alikelleci.eventify.core.messaging.commandhandling.Command;

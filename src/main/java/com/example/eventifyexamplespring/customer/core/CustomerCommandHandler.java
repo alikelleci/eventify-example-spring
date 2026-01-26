@@ -1,17 +1,16 @@
-package com.example.eventifyexamplespring.handlers;
+package com.example.eventifyexamplespring.customer.core;
 
-import com.example.eventifyexamplespring.domain.Customer;
-import com.example.eventifyexamplespring.domain.CustomerCommand.AddCredits;
-import com.example.eventifyexamplespring.domain.CustomerCommand.ChangeFirstName;
-import com.example.eventifyexamplespring.domain.CustomerCommand.ChangeLastName;
-import com.example.eventifyexamplespring.domain.CustomerCommand.CreateCustomer;
-import com.example.eventifyexamplespring.domain.CustomerCommand.DeleteCustomer;
-import com.example.eventifyexamplespring.domain.CustomerCommand.IssueCredits;
-import com.example.eventifyexamplespring.domain.CustomerEvent;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerDeleted;
-import com.example.eventifyexamplespring.domain.CustomerEvent.FirstNameChanged;
-import com.example.eventifyexamplespring.domain.CustomerEvent.LastNameChanged;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.AddCredits;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.ChangeFirstName;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.ChangeLastName;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.CreateCustomer;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.DeleteCustomer;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.IssueCredits;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CustomerDeleted;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.FirstNameChanged;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.LastNameChanged;
 import io.github.alikelleci.eventify.core.common.annotations.MessageId;
 import io.github.alikelleci.eventify.core.common.annotations.MetadataValue;
 import io.github.alikelleci.eventify.core.common.annotations.Timestamp;
@@ -23,8 +22,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
-import static com.example.eventifyexamplespring.domain.CustomerEvent.CreditsAdded;
-import static com.example.eventifyexamplespring.domain.CustomerEvent.CreditsIssued;
+import static com.example.eventifyexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import static com.example.eventifyexamplespring.customer.shared.CustomerEvent.CreditsIssued;
 import static io.github.alikelleci.eventify.core.messaging.Metadata.CORRELATION_ID;
 
 @Slf4j

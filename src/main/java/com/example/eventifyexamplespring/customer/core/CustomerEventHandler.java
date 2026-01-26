@@ -1,15 +1,15 @@
-package com.example.eventifyexamplespring.handlers;
+package com.example.eventifyexamplespring.customer.core;
 
-import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerDeleted;
-import com.example.eventifyexamplespring.domain.CustomerEvent.FirstNameChanged;
-import com.example.eventifyexamplespring.domain.CustomerEvent.LastNameChanged;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CustomerDeleted;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.FirstNameChanged;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.LastNameChanged;
 import io.github.alikelleci.eventify.core.messaging.eventhandling.annotations.HandleEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import static com.example.eventifyexamplespring.domain.CustomerEvent.CreditsAdded;
-import static com.example.eventifyexamplespring.domain.CustomerEvent.CreditsIssued;
+import static com.example.eventifyexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import static com.example.eventifyexamplespring.customer.shared.CustomerEvent.CreditsIssued;
 
 @Slf4j
 @Component

@@ -1,4 +1,4 @@
-package com.example.eventifyexamplespring.handlers;
+package com.example.eventifyexamplespring.customer.core;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;

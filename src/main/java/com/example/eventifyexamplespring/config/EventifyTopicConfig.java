@@ -1,7 +1,7 @@
 package com.example.eventifyexamplespring.config;
 
-import com.example.eventifyexamplespring.domain.CustomerCommand;
-import com.example.eventifyexamplespring.domain.CustomerEvent;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent;
 import io.github.alikelleci.eventify.core.common.annotations.TopicInfo;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class TopicConfig {
+public class EventifyTopicConfig {
 
   @Bean
   public KafkaAdmin admin() {

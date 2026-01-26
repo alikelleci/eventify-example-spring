@@ -1,4 +1,4 @@
-package com.example.eventifyexamplespring.domain;
+package com.example.eventifyexamplespring.customer.core;
 
 import io.github.alikelleci.eventify.core.common.annotations.AggregateId;
 import io.github.alikelleci.eventify.core.common.annotations.AggregateRoot;

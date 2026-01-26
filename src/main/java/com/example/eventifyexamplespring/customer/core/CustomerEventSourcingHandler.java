@@ -1,12 +1,11 @@
-package com.example.eventifyexamplespring.handlers;
+package com.example.eventifyexamplespring.customer.core;
 
-import com.example.eventifyexamplespring.domain.Customer;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CreditsAdded;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CreditsIssued;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerCreated;
-import com.example.eventifyexamplespring.domain.CustomerEvent.CustomerDeleted;
-import com.example.eventifyexamplespring.domain.CustomerEvent.FirstNameChanged;
-import com.example.eventifyexamplespring.domain.CustomerEvent.LastNameChanged;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CreditsAdded;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CreditsIssued;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CustomerCreated;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.CustomerDeleted;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.FirstNameChanged;
+import com.example.eventifyexamplespring.customer.shared.CustomerEvent.LastNameChanged;
 import io.github.alikelleci.eventify.core.common.annotations.MessageId;
 import io.github.alikelleci.eventify.core.common.annotations.MetadataValue;
 import io.github.alikelleci.eventify.core.common.annotations.Timestamp;

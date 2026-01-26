@@ -1,8 +1,8 @@
-package com.example.eventifyexamplespring.controller;
+package com.example.eventifyexamplespring.customer;
 
-import com.example.eventifyexamplespring.domain.CustomerCommand.AddCredits;
-import com.example.eventifyexamplespring.domain.CustomerCommand.DeleteCustomer;
-import com.example.eventifyexamplespring.domain.CustomerCommand.IssueCredits;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.AddCredits;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.DeleteCustomer;
+import com.example.eventifyexamplespring.customer.shared.CustomerCommand.IssueCredits;
 import com.github.javafaker.Faker;
 import io.github.alikelleci.eventify.core.messaging.commandhandling.gateway.CommandGateway;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 
-import static com.example.eventifyexamplespring.domain.CustomerCommand.CreateCustomer;
+import static com.example.eventifyexamplespring.customer.shared.CustomerCommand.CreateCustomer;
 
 @Slf4j
 @RestController
