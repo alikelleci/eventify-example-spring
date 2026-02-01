@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerEventUpcaster {
 
-  @Upcast(type = "com.example.eventifyexamplespring.domain.CustomerEvent$CustomerCreated", revision = 1)
+  @Upcast(type = "com.example.eventifyexamplespring.customer.shared.CustomerEvent$CustomerCreated", revision = 1)
   public JsonNode upcastRev1(ObjectNode objectNode) {
     objectNode.put("firstName", "John v1 -> v2");
     log.info("Upcasted from revision 1 to 2");
@@ -18,7 +18,7 @@ public class CustomerEventUpcaster {
     return objectNode;
   }
 
-  @Upcast(type = "com.example.eventifyexamplespring.domain.CustomerEvent$CustomerCreated", revision = 2)
+  @Upcast(type = "com.example.eventifyexamplespring.customer.shared.CustomerEvent$CustomerCreated", revision = 2)
   public JsonNode upcastRev2(ObjectNode objectNode) {
     objectNode.put("firstName", "John v2 -> v3");
     log.info("Upcasted from revision 2 to 3");
@@ -26,7 +26,7 @@ public class CustomerEventUpcaster {
     return objectNode;
   }
 
-  @Upcast(type = "com.example.eventifyexamplespring.domain.CustomerEvent$CustomerCreated", revision = 3)
+  @Upcast(type = "com.example.eventifyexamplespring.customer.shared.CustomerEvent$CustomerCreated", revision = 3)
   public JsonNode upcastRev3(ObjectNode objectNode) {
     objectNode.put("firstName", "John v3 -> v4");
     log.info("Upcasted from revision 3 to 4");
@@ -34,7 +34,7 @@ public class CustomerEventUpcaster {
     return objectNode;
   }
 
-  @Upcast(type = "com.example.eventifyexamplespring.domain.CustomerEvent$CustomerCreated", revision = 6)
+  @Upcast(type = "com.example.eventifyexamplespring.customer.shared.CustomerEvent$CustomerCreated", revision = 6)
   public JsonNode upcastRev6(ObjectNode objectNode) {
     objectNode.put("firstName", "John v6 -> v7");
     log.info("Upcasted from revision 6 to 7");
@@ -42,7 +42,7 @@ public class CustomerEventUpcaster {
     return objectNode;
   }
 
-  @Upcast(type = "com.example.eventifyexamplespring.domain.CustomerEvent$CustomerCreated", revision = 7)
+  @Upcast(type = "com.example.eventifyexamplespring.customer.shared.CustomerEvent$CustomerCreated", revision = 7)
   public JsonNode upcastRev7(ObjectNode objectNode) {
     objectNode.put("firstName", "John v7 -> v8");
     log.info("Upcasted from revision 7 to 8");
