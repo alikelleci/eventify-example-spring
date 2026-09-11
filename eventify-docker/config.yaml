@@ -1,0 +1,4 @@
+eventify:
+  apps:
+    - name: eventify-example-spring
+      url: http://localhost:5051
