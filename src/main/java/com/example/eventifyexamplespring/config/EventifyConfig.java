@@ -26,7 +26,6 @@ public class EventifyConfig {
     Properties streamsConfig = new Properties();
     streamsConfig.put(StreamsConfig.APPLICATION_ID_CONFIG, applicationName);
     streamsConfig.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-    streamsConfig.put(StreamsConfig.STATE_DIR_CONFIG, "C:\\tmp\\kafka-streams");
     streamsConfig.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 10_000);
 
     return Eventify.builder()
