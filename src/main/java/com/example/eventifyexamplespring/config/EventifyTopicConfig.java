@@ -1,7 +1,7 @@
 package com.example.eventifyexamplespring.config;
 
-import com.example.eventifyexamplespring.customer.shared.CustomerCommand;
-import com.example.eventifyexamplespring.customer.shared.CustomerEvent;
+import com.example.eventifyexamplespring.order.OrderCommand;
+import com.example.eventifyexamplespring.order.OrderEvent;
 import io.github.alikelleci.eventify.core.common.annotations.TopicInfo;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -28,12 +28,9 @@ public class EventifyTopicConfig {
   @Bean
   public NewTopics topics() {
     return new NewTopics(
-        // Customer
-        commandTopic(CustomerCommand.class),
-        commandResultsTopic(CustomerCommand.class),
-        eventTopic(CustomerEvent.class)
-
-        // Other aggregate topics...
+        commandTopic(OrderCommand.class),
+        commandResultsTopic(OrderCommand.class),
+        eventTopic(OrderEvent.class)
     );
   }
 
