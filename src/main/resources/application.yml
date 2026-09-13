@@ -1,6 +1,9 @@
 server:
   port: 5050
 
+app:
+  server-endpoint: "localhost:5051"
+
 logging:
   level:
     org:
