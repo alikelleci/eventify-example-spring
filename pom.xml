@@ -55,16 +55,6 @@
 			<version>${eventify.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.github.alikelleci</groupId>
-			<artifactId>eventify-console-server</artifactId>
-			<version>${eventify.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.alikelleci</groupId>
-			<artifactId>eventify-console-ui</artifactId>
-			<version>${eventify.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>com.github.javafaker</groupId>
 			<artifactId>javafaker</artifactId>
 			<version>1.0.2</version>
