@@ -28,12 +28,9 @@ public class EventifyTopicConfig {
   @Bean
   public NewTopics topics() {
     return new NewTopics(
-        // Customer
         commandTopic(OrderCommand.class),
         commandResultsTopic(OrderCommand.class),
         eventTopic(OrderEvent.class)
-
-        // Other aggregate topics...
     );
   }
 
