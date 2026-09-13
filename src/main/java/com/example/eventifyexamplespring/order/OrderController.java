@@ -18,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/customers")
+@RequestMapping(value = "/orders")
 public class OrderController {
 
   @Autowired
