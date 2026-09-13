@@ -7,8 +7,9 @@ import com.example.eventifyexamplespring.order.OrderCommand.PlaceOrder;
 import com.example.eventifyexamplespring.order.OrderCommand.ShipOrder;
 import io.github.alikelleci.eventify.core.messaging.resulthandling.annotations.HandleResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
-@Slf4j
+@Component
 public class OrderResultHandler {
 
   @HandleResult

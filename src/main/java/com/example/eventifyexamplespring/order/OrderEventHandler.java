@@ -6,7 +6,9 @@ import com.example.eventifyexamplespring.order.OrderEvent.OrderDelivered;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderPlaced;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderShipped;
 import io.github.alikelleci.eventify.core.messaging.eventhandling.annotations.HandleEvent;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderEventHandler {
 
   @HandleEvent

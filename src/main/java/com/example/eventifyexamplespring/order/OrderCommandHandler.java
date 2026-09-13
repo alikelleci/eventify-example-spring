@@ -16,11 +16,13 @@ import io.github.alikelleci.eventify.core.common.annotations.Timestamp;
 import io.github.alikelleci.eventify.core.messaging.Metadata;
 import io.github.alikelleci.eventify.core.messaging.commandhandling.annotations.HandleCommand;
 import jakarta.validation.ValidationException;
+import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
 import static io.github.alikelleci.eventify.core.messaging.Metadata.CORRELATION_ID;
 
+@Component
 public class OrderCommandHandler {
 
   @HandleCommand

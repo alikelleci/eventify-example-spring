@@ -4,8 +4,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.github.alikelleci.eventify.core.messaging.upcasting.annotations.Upcast;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
-@Slf4j
+@Component
 public class OrderEventUpcaster {
 
   @Upcast(type = "io.github.alikelleci.eventify.core.domain.OrderEvent$OrderPlaced", revision = 1)
