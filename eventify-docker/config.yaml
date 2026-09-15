@@ -1,4 +1,6 @@
 eventify:
   apps:
-    - name: eventify-example-spring
-      url: http://localhost:6051
+    - name: Orders
+      url: http://localhost:5051
+    - name: Customers
+      url: http://localhost:5052
