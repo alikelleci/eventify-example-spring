@@ -1,5 +1,6 @@
 package com.example.eventifyexamplespring.config;
 
+import io.github.alikelleci.eventify.console.plugin.EventifyConsolePlugin;
 import io.github.alikelleci.eventify.core.Eventify;
 import io.github.alikelleci.eventify.core.messaging.commandhandling.gateway.CommandGateway;
 import io.github.alikelleci.eventify.core.messaging.eventhandling.gateway.EventGateway;
@@ -40,6 +41,9 @@ public class EventifyConfig {
 
     return Eventify.builder()
         .streamsConfig(streamsConfig)
+        .registerPlugin(EventifyConsolePlugin.builder()
+            .url("http://localhost:4040")
+            .build())
         .build();
   }
 

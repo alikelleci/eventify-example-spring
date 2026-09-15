@@ -1,6 +1,0 @@
-eventify:
-  apps:
-    - name: Orders
-      url: http://localhost:5051
-    - name: Customers
-      url: http://localhost:5052
