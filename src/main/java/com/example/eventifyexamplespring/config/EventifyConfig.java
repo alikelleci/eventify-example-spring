@@ -22,9 +22,6 @@ public class EventifyConfig {
   @Value("${spring.kafka.bootstrap-servers}")
   private String bootstrapServers;
 
-  @Value("${app.server-endpoint}")
-  private String serverEndpoint;
-
   @Value("${app.state-dir:}")
   private String stateDir;
 
@@ -34,7 +31,6 @@ public class EventifyConfig {
     streamsConfig.put(StreamsConfig.APPLICATION_ID_CONFIG, applicationName);
     streamsConfig.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     streamsConfig.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 10_000);
-    streamsConfig.put(StreamsConfig.APPLICATION_SERVER_CONFIG, serverEndpoint);
     if (!stateDir.isBlank()) {
       streamsConfig.put(StreamsConfig.STATE_DIR_CONFIG, stateDir);
     }
