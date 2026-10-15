@@ -2,7 +2,7 @@ package com.example.eventifyexamplespring.config;
 
 import com.example.eventifyexamplespring.order.OrderCommand;
 import com.example.eventifyexamplespring.order.OrderEvent;
-import io.github.alikelleci.eventify.core.common.annotations.TopicInfo;
+import io.github.alikelleci.eventify.core.message.annotation.Topic;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
@@ -35,21 +35,22 @@ public class EventifyTopicConfig {
   }
 
   private NewTopic commandTopic(Class<?> commandClass) {
-    return TopicBuilder.name(commandClass.getAnnotation(TopicInfo.class).value())
+    return TopicBuilder
+        .name(commandClass.getAnnotation(Topic.class).value())
         .partitions(10)
         .build();
   }
 
   private NewTopic commandResultsTopic(Class<?> commandClass) {
     return TopicBuilder
-        .name(commandClass.getAnnotation(TopicInfo.class)
-            .value() + ".results").partitions(10)
+        .name(commandClass.getAnnotation(Topic.class).value() + ".results")
+        .partitions(10)
         .build();
   }
 
   private NewTopic eventTopic(Class<?> eventClass) {
     return TopicBuilder
-        .name(eventClass.getAnnotation(TopicInfo.class).value())
+        .name(eventClass.getAnnotation(Topic.class).value())
         .partitions(10).config("retention.ms", "-1")
         .build();
   }

@@ -1,6 +1,6 @@
 package com.example.eventifyexamplespring.common;
 
-import io.github.alikelleci.eventify.core.messaging.commandhandling.exceptions.CommandExecutionException;
+import io.github.alikelleci.eventify.core.command.exception.CommandExecutionException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

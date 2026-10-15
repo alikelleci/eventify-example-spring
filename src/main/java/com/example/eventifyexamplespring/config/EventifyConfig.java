@@ -1,9 +1,8 @@
 package com.example.eventifyexamplespring.config;
 
-import io.github.alikelleci.eventify.console.plugin.EventifyConsolePlugin;
+import io.github.alikelleci.eventify.console.client.EventifyConsoleClient;
 import io.github.alikelleci.eventify.core.Eventify;
-import io.github.alikelleci.eventify.core.messaging.commandhandling.gateway.CommandGateway;
-import io.github.alikelleci.eventify.core.messaging.eventhandling.gateway.EventGateway;
+import io.github.alikelleci.eventify.core.command.gateway.CommandGateway;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.streams.StreamsConfig;
@@ -26,7 +25,7 @@ public class EventifyConfig {
   private String stateDir;
 
   @Bean
-  public Eventify eventify() {
+  Eventify eventify(Eventify.EventifyBuilder builder) {
     Properties streamsConfig = new Properties();
     streamsConfig.put(StreamsConfig.APPLICATION_ID_CONFIG, applicationName);
     streamsConfig.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -35,11 +34,11 @@ public class EventifyConfig {
       streamsConfig.put(StreamsConfig.STATE_DIR_CONFIG, stateDir);
     }
 
-    return Eventify.builder()
+    return builder
         .streamsConfig(streamsConfig)
-        .registerPlugin(EventifyConsolePlugin.builder()
-            .url("http://localhost:4040")
-            .build())
+//        .registerPlugin(EventifyConsoleClient.builder()
+//            .url("http://localhost:4040")
+//            .build())
         .build();
   }
 
@@ -54,13 +53,4 @@ public class EventifyConfig {
         .build();
   }
 
-  @Bean
-  public EventGateway eventGateway() {
-    Properties producerConfig = new Properties();
-    producerConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-
-    return EventGateway.builder()
-        .producerConfig(producerConfig)
-        .build();
-  }
 }
