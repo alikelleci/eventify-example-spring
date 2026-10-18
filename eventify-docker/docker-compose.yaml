@@ -2,6 +2,4 @@ services:
   eventify-console:
     image: eventify-console:latest
     ports:
-      - "80:80"
-    volumes:
-      - ./config.yaml:/etc/eventify/config.yaml
+      - "80:8080"

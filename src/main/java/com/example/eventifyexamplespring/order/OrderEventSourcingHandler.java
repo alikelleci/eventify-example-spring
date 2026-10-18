@@ -5,21 +5,23 @@ import com.example.eventifyexamplespring.order.OrderEvent.OrderConfirmed;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderDelivered;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderPlaced;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderShipped;
-import io.github.alikelleci.eventify.core.common.annotations.MessageId;
-import io.github.alikelleci.eventify.core.common.annotations.MetadataValue;
-import io.github.alikelleci.eventify.core.common.annotations.Timestamp;
-import io.github.alikelleci.eventify.core.messaging.Metadata;
-import io.github.alikelleci.eventify.core.messaging.eventsourcing.annotations.ApplyEvent;
+import io.github.alikelleci.eventify.core.aggregate.annotation.EventSourcingHandler;
+import io.github.alikelleci.eventify.core.command.annotation.CommandHandler;
+import io.github.alikelleci.eventify.core.handler.annotation.MessageId;
+import io.github.alikelleci.eventify.core.handler.annotation.MetadataValue;
+import io.github.alikelleci.eventify.core.handler.annotation.Timestamp;
+import io.github.alikelleci.eventify.core.message.Metadata;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
-import static io.github.alikelleci.eventify.core.messaging.Metadata.CORRELATION_ID;
+import static io.github.alikelleci.eventify.core.message.MetadataKeys.CORRELATION_ID;
+
 
 @Component
 public class OrderEventSourcingHandler {
 
-  @ApplyEvent
+  @EventSourcingHandler
   public Order apply(OrderPlaced event, Order state,
                      Metadata metadata,
                      @Timestamp Instant timestamp,
@@ -35,14 +37,14 @@ public class OrderEventSourcingHandler {
         .build();
   }
 
-  @ApplyEvent
+  @EventSourcingHandler
   public Order apply(OrderConfirmed event, Order state) {
     return state.toBuilder()
         .status("CONFIRMED")
         .build();
   }
 
-  @ApplyEvent
+  @EventSourcingHandler
   public Order apply(OrderShipped event, Order state) {
     return state.toBuilder()
         .status("SHIPPED")
@@ -50,14 +52,14 @@ public class OrderEventSourcingHandler {
         .build();
   }
 
-  @ApplyEvent
+  @EventSourcingHandler
   public Order apply(OrderDelivered event, Order state) {
     return state.toBuilder()
         .status("DELIVERED")
         .build();
   }
 
-  @ApplyEvent
+  @EventSourcingHandler
   public Order apply(OrderCancelled event, Order state) {
     return null; // aggregate removed on cancellation
   }

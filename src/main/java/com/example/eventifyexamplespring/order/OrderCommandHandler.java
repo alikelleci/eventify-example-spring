@@ -10,22 +10,23 @@ import com.example.eventifyexamplespring.order.OrderEvent.OrderConfirmed;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderDelivered;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderPlaced;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderShipped;
-import io.github.alikelleci.eventify.core.common.annotations.MessageId;
-import io.github.alikelleci.eventify.core.common.annotations.MetadataValue;
-import io.github.alikelleci.eventify.core.common.annotations.Timestamp;
-import io.github.alikelleci.eventify.core.messaging.Metadata;
-import io.github.alikelleci.eventify.core.messaging.commandhandling.annotations.HandleCommand;
+import io.github.alikelleci.eventify.core.command.annotation.CommandHandler;
+import io.github.alikelleci.eventify.core.handler.annotation.MessageId;
+import io.github.alikelleci.eventify.core.handler.annotation.MetadataValue;
+import io.github.alikelleci.eventify.core.handler.annotation.Timestamp;
+import io.github.alikelleci.eventify.core.message.Metadata;
 import jakarta.validation.ValidationException;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
-import static io.github.alikelleci.eventify.core.messaging.Metadata.CORRELATION_ID;
+import static io.github.alikelleci.eventify.core.message.MetadataKeys.CORRELATION_ID;
+
 
 @Component
 public class OrderCommandHandler {
 
-  @HandleCommand
+  @CommandHandler
   public OrderEvent handle(PlaceOrder command, Order state,
                            Metadata metadata,
                            @Timestamp Instant timestamp,
@@ -40,7 +41,7 @@ public class OrderCommandHandler {
         .build();
   }
 
-  @HandleCommand
+  @CommandHandler
   public OrderEvent handle(ConfirmOrder command, Order state) {
     if (state == null) throw new ValidationException("Order does not exist.");
     if (!"PLACED".equals(state.getStatus())) throw new ValidationException("Order cannot be confirmed.");
@@ -49,7 +50,7 @@ public class OrderCommandHandler {
         .build();
   }
 
-  @HandleCommand
+  @CommandHandler
   public OrderEvent handle(ShipOrder command, Order state) {
     if (state == null) throw new ValidationException("Order does not exist.");
     if (!"CONFIRMED".equals(state.getStatus())) throw new ValidationException("Order cannot be shipped.");
@@ -59,7 +60,7 @@ public class OrderCommandHandler {
         .build();
   }
 
-  @HandleCommand
+  @CommandHandler
   public OrderEvent handle(DeliverOrder command, Order state) {
     if (state == null) throw new ValidationException("Order does not exist.");
     if (!"SHIPPED".equals(state.getStatus())) throw new ValidationException("Order cannot be delivered.");
@@ -68,7 +69,7 @@ public class OrderCommandHandler {
         .build();
   }
 
-  @HandleCommand
+  @CommandHandler
   public OrderEvent handle(CancelOrder command, Order state) {
     if (state == null) throw new ValidationException("Order does not exist.");
     if ("SHIPPED".equals(state.getStatus()) || "DELIVERED".equals(state.getStatus()))
