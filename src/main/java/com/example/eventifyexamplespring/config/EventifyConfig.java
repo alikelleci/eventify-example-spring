@@ -36,9 +36,9 @@ public class EventifyConfig {
 
     return builder
         .streamsConfig(streamsConfig)
-//        .registerPlugin(EventifyConsoleClient.builder()
-//            .url("http://localhost:4040")
-//            .build())
+        .registerPlugin(EventifyConsoleClient.builder()
+            .url("http://localhost:80")
+            .build())
         .build();
   }
 

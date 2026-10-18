@@ -6,7 +6,6 @@ import com.example.eventifyexamplespring.order.OrderCommand.DeliverOrder;
 import com.example.eventifyexamplespring.order.OrderCommand.PlaceOrder;
 import com.example.eventifyexamplespring.order.OrderCommand.ShipOrder;
 import com.github.javafaker.Faker;
-import io.github.alikelleci.eventify.core.command.CommandResult.Success;
 import io.github.alikelleci.eventify.core.command.gateway.CommandGateway;
 import io.github.alikelleci.eventify.core.event.Event;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +63,7 @@ public class OrderController {
   public CompletableFuture<List<Event>> cancel(@PathVariable String id) {
     return commandGateway.send(CancelOrder.builder()
         .id(id)
+        .reason("Wrong order")
         .build());
   }
 }
