@@ -10,7 +10,9 @@ import com.example.eventifyexamplespring.order.OrderEvent.OrderPlaced;
 import com.example.eventifyexamplespring.order.OrderEventSourcingHandler;
 import io.github.alikelleci.eventify.core.Eventify;
 import io.github.alikelleci.eventify.core.command.Command;
+import io.github.alikelleci.eventify.core.command.CommandSerde;
 import io.github.alikelleci.eventify.core.event.Event;
+import io.github.alikelleci.eventify.core.event.EventSerde;
 import io.github.alikelleci.eventify.core.message.annotation.Topic;
 import io.github.alikelleci.eventify.core.serialization.JsonDeserializer;
 import io.github.alikelleci.eventify.core.serialization.JsonSerializer;
@@ -45,12 +47,12 @@ class EventifyExampleSpringApplicationTests {
     commands = testDriver.createInputTopic(
         OrderCommand.class.getAnnotation(Topic.class).value(),
         new StringSerializer(),
-        new JsonSerializer<>());
+        new CommandSerde().serializer());
 
     events = testDriver.createOutputTopic(
         OrderEvent.class.getAnnotation(Topic.class).value(),
         new StringDeserializer(),
-        new JsonDeserializer<>(Event.class));
+        new EventSerde().deserializer());
   }
 
   @AfterEach
