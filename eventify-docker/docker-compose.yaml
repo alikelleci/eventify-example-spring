@@ -1,5 +1,5 @@
 services:
   eventify-console:
-    image: eventify-console:latest
+    image: ghcr.io/alikelleci/eventify-console:5.0.0-beta.1
     ports:
       - "80:8080"

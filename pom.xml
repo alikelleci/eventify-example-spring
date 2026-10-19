@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<eventify.version>0.0.1-SNAPSHOT</eventify.version>
+		<eventify.version>5.0.0-beta.1</eventify.version>
 	</properties>
 
 	<dependencies>

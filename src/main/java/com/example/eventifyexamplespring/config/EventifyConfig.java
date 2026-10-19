@@ -2,6 +2,7 @@ package com.example.eventifyexamplespring.config;
 
 import io.github.alikelleci.eventify.console.client.EventifyConsoleClient;
 import io.github.alikelleci.eventify.core.Eventify;
+import io.github.alikelleci.eventify.core.Eventify.EventifyBuilder;
 import io.github.alikelleci.eventify.core.command.gateway.CommandGateway;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -25,7 +26,7 @@ public class EventifyConfig {
   private String stateDir;
 
   @Bean
-  Eventify eventify(Eventify.EventifyBuilder builder) {
+  Eventify eventify(EventifyBuilder builder) {
     Properties streamsConfig = new Properties();
     streamsConfig.put(StreamsConfig.APPLICATION_ID_CONFIG, applicationName);
     streamsConfig.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);

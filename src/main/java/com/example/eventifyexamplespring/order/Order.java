@@ -11,7 +11,6 @@ import java.time.Instant;
 @Value
 @Builder(toBuilder = true)
 @AggregateRoot("order")
-@EnableSnapshotting(threshold = 3)
 public class Order {
   @AggregateId
   String id;
