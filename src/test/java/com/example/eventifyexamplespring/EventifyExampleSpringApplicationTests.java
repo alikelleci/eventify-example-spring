@@ -9,11 +9,11 @@ import com.example.eventifyexamplespring.order.OrderEvent.OrderConfirmed;
 import com.example.eventifyexamplespring.order.OrderEvent.OrderPlaced;
 import com.example.eventifyexamplespring.order.OrderEventSourcingHandler;
 import io.github.alikelleci.eventify.core.Eventify;
-import io.github.alikelleci.eventify.core.common.annotations.TopicInfo;
-import io.github.alikelleci.eventify.core.messaging.commandhandling.Command;
-import io.github.alikelleci.eventify.core.messaging.eventhandling.Event;
-import io.github.alikelleci.eventify.core.support.serialization.json.JsonDeserializer;
-import io.github.alikelleci.eventify.core.support.serialization.json.JsonSerializer;
+import io.github.alikelleci.eventify.core.command.Command;
+import io.github.alikelleci.eventify.core.event.Event;
+import io.github.alikelleci.eventify.core.message.annotation.Topic;
+import io.github.alikelleci.eventify.core.serialization.JsonDeserializer;
+import io.github.alikelleci.eventify.core.serialization.JsonSerializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.TestInputTopic;
@@ -43,12 +43,12 @@ class EventifyExampleSpringApplicationTests {
     testDriver = new TopologyTestDriver(eventify.topology());
 
     commands = testDriver.createInputTopic(
-        OrderCommand.class.getAnnotation(TopicInfo.class).value(),
+        OrderCommand.class.getAnnotation(Topic.class).value(),
         new StringSerializer(),
         new JsonSerializer<>());
 
     events = testDriver.createOutputTopic(
-        OrderEvent.class.getAnnotation(TopicInfo.class).value(),
+        OrderEvent.class.getAnnotation(Topic.class).value(),
         new StringDeserializer(),
         new JsonDeserializer<>(Event.class));
   }
